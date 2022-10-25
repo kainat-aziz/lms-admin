@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import Image from "next/image";
 import Profile from "/assets/images/image5.svg";
-import { Listbox, Menu, Transition } from "@headlessui/react";
+
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import { GetServerSideProps } from "next";
 import { request } from "https";
