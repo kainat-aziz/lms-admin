@@ -5,6 +5,10 @@ import { Listbox, Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import { GetServerSideProps } from "next";
 import { request } from "https";
+import axios from "axios";
+
+const createUserApi = "https://lms-be-api.herokuapp.com/auth/create";
+const changeStatusApi = "https://lms-be-api.herokuapp.com/users/update-status";
 
 const classNames = (...classes: any) => {
   return classes.filter(Boolean).join(" ");
@@ -21,24 +25,54 @@ const Dashboard = ({ data }: any) => {
   const [activeUser, setActiveUser] = useState(requests[0]);
   const [activeId, setActiveId] = useState(0);
 
-  const usersRequest = async () => {
-    const res = await fetch("https://lms-be-api.herokuapp.com/user");
-    const data = await res.json();
-    setRequests(data);
-  };
+  // const usersRequest = async () => {
+  //   const res = await fetch("https://lms-be-api.herokuapp.com/user");
+  //   const data = await res.json();
+  //   setRequests(data);
+  // };
 
   const createUserLogin = async () => {
-    console.log(selected);
+    // const userRequestApi = "https://lms-be-api.herokuapp.com//user";
+    console.log("herer", selected, activeUser.email);
+    if (selected === "accepted") {
+      const res = axios.post(createUserApi, {
+        email: activeUser.email,
+        status: selected,
+      });
 
-    const res = await fetch("http://lms-be-api.herokuapp.com/auth/create", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email: activeUser.email }),
+      console.log(res);
+    }
+
+    const data = axios.patch(changeStatusApi, {
+      id: activeId,
+      email: activeUser.email,
+      status: selected,
     });
-    const data = await res.json();
     console.log(data);
+    // if (selected === "accepted") {
+    //   const res = await fetch(createUserApi, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ email: activeUser.email, status: selected }),
+    //   });
+    //   const data = await res.json();
+    //   console.log(data);
+    // }
+    // const res = await fetch(changeStatusApi, {
+    //   method: "PATCH",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     id: activeId,
+    //     email: activeUser.email,
+    //     status: selected,
+    //   }),
+    // });
+    // const data = await res.json();
+    // console.log(data);
   };
 
   // const changeUserStatus = async () => {
@@ -148,7 +182,10 @@ const Dashboard = ({ data }: any) => {
                           }}
                         >
                           {status.map((item) => (
-                            <option key={item.id} value={item.name}>
+                            <option
+                              key={item.id}
+                              value={item.name.toLowerCase()}
+                            >
                               {item.name}
                             </option>
                           ))}
