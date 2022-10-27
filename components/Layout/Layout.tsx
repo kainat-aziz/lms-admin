@@ -16,7 +16,7 @@ import Link from "next/link";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: HomeIcon, current: true },
-  { name: "Users", href: "#", icon: HomeIcon, current: false },
+  { name: "Users", href: "/user", icon: HomeIcon, current: false },
   {
     name: "Roles & Permission",
     href: "/roles",
@@ -171,11 +171,11 @@ export default function Header({ children }: any) {
         <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5">
-            <div className="flex flex-shrink-0 items-center px-4">
-              <h1 className="font-bold">EduKids Admin</h1>
+            <div className=" text-center px-4">
+              <h1 className="font-bold text-[24px]">EduKids Admin</h1>
             </div>
             <div className="mt-5">
-              <nav className=" space-y-1 px-2 pb-4">
+              <nav className="pt-4 pb-4">
                 {navigation.map((item, index) => (
                   <a
                     key={item.name}
@@ -183,8 +183,8 @@ export default function Header({ children }: any) {
                     className={classNames(
                       item.current
                         ? "bg-[#F0A901] text-white"
-                        : "text-gray-600 hover:bg-[#F0A901] hover:text-white ",
-                      "group flex text-left flex-col items-start px-2 py-2 text-sm font-medium rounded-md"
+                        : "text-gray-500 hover:bg-[#F0A901] hover:text-white ",
+                      "group flex text-left text-[16px] flex-col items-start px-2 py-5 text-sm font-medium "
                     )}
                   >
                     <div
@@ -202,7 +202,7 @@ export default function Header({ children }: any) {
                         {item.name == "Users" && (
                           <nav className=" space-y-1 px-2">
                             {users.map((item) => (
-                              <div key={item.name}>
+                              <div key={item.name} className="">
                                 <Link
                                   href={item.href}
                                   //  href={item.href}

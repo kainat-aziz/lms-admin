@@ -173,7 +173,7 @@ const Dashboard = ({ data }: any) => {
 
                       <td className="relative whitespace-nowrap py-4 pl-3 pr-4  text-sm font-medium sm:pr-6">
                         <select
-                          className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                          className="mt-1 block  rounded-md border-2 border-gray-200 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                           defaultValue={status[0].name}
                           onChange={(e: any) => {
                             setSelected(e.target.value);
