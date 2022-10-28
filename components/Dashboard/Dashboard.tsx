@@ -47,7 +47,7 @@ const Dashboard = ({ data }: any) => {
       id: activeId,
       email: activeUser.email,
       status: selected,
-    });
+    }); 
     console.log(data);
     // if (selected === "accepted") {
     //   const res = await fetch(createUserApi, {
